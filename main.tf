@@ -1,17 +1,9 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "3.4.0"
-    }
-  }
-}
-
 provider "aws" {
   region  = "us-east-2"
 }
+
 resource "aws_instance" "web" {
-  ami           = "ami-054a31f1b3bf90920"
+  ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   subnet_id     = "subnet-05880ea9006199004"
   
@@ -23,6 +15,15 @@ resource "aws_instance" "web" {
     
   tags = {
     Name = "MinhaPrimeiraEC2_Julia"
+  }
+}
+
+data "aws_ami" "ubuntu"{
+  most_recent = true
+  owners = ["099720109477"]
+  filter {
+    name= "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-*"]
   }
 }
 
