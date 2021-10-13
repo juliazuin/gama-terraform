@@ -6,7 +6,8 @@ resource "aws_instance" "web" {
   ami           = var.ami
   instance_type = var.tamanho
   count = var.qtd
-  key_name = "have_development_julia"
+  key_name = "chave_development_julia"
+  associate_public_ip_address = true
   root_block_device {
     encrypted   = true
     #kms_key_id  = "arn:aws:kms:us-east-1:534566538491:key/90847cc8-47e8-4a75-8a69-2dae39f0cc0d" #key managment service (aws) -> awsmanaged keys -> aws/ebs -> copy arn
