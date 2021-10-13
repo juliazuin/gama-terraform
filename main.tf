@@ -8,11 +8,11 @@ resource "aws_instance" "web" {
   count = var.qtd
   root_block_device {
     encrypted   = true
-    kms_key_id  = "arn:aws:kms:us-east-1:534566538491:key/90847cc8-47e8-4a75-8a69-2dae39f0cc0d" #key managment service (aws) -> awsmanaged keys -> aws/ebs -> copy arn
+    #kms_key_id  = "arn:aws:kms:us-east-1:534566538491:key/90847cc8-47e8-4a75-8a69-2dae39f0cc0d" #key managment service (aws) -> awsmanaged keys -> aws/ebs -> copy arn
     volume_size = 8
   }
   tags = {
-    Name = var.nome
+    Name = "${var.nome}-${count.index}"
   }
 }
 
@@ -57,4 +57,11 @@ variable "qtd" {
 
 variable "nome" {
   description = "Digite o nome da maquina: "
+}
+
+output "ssh_connect" {
+  value = [
+    for key, item in aws_instance.web :
+      "ec2 ${key+1} - ${item.private_ip} - ssh -i ~/.ssh/id_rsa ubuntu@${item.public_dns}"
+  ]  
 }
