@@ -3,7 +3,7 @@ provider "aws" {
 }
 resource "aws_instance" "web" {
   subnet_id                   = var.subnet_id
-  ami                         = var.ami
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.tamanho
   count                       = var.qtd
   key_name                    = "chave_development_julia"
