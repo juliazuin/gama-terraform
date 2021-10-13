@@ -1,32 +1,16 @@
 provider "aws" {
-  region = "us-east-2"
+  region = "us-east-1"
 }
-
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
+  subnet_id     = "subnet-0734ecf92f4be11fa"
+  ami           = "ami-09e67e426f25ce0d7"
   instance_type = "t2.micro"
-  subnet_id     = "subnet-05880ea9006199004"
-
   root_block_device {
-    volume_size = 8
     encrypted   = true
-    kms_key_id  = "7f780024-d5c0-4c59-a9b7-99d5b16578ca"
+    kms_key_id  = "arn:aws:kms:us-east-1:534566538491:key/90847cc8-47e8-4a75-8a69-2dae39f0cc0d"
+    volume_size = 20
   }
-
   tags = {
-    Name = "MinhaPrimeiraEC2_Julia"
+    Name = "ec2-julia-tf"
   }
 }
-
-data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"]
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-*"]
-  }
-}
-
-#subnet-05880ea9006199004
-# Terraform v1.0.8
-
