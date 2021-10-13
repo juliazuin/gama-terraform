@@ -11,6 +11,10 @@ resource "aws_security_group" "allow_ssh_julia" {
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["0.0.0.0/0"]
+      prefix_list_ids  = null,
+      security_groups  = null,
+      self             = null
+      description      = "liberando porta interna"
     }
   ]
 
@@ -21,6 +25,10 @@ resource "aws_security_group" "allow_ssh_julia" {
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
+      prefix_list_ids  = null,
+      security_groups  = null,
+      self             = null
+      description      = "liberando porta interna"
     }
   ]
 
