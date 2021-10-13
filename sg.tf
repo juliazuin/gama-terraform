@@ -1,5 +1,5 @@
-resource "aws_security_group" "allow_ssh_julia" {
-  name        = "allow_ssh_julia"
+resource "aws_security_group" "allow-ssh-julia" {
+  name        = "allow-ssh-julia"
   description = "Permitir conexão ssh"
   vpc_id      = " vpc-063fc945cde94d3ab"
 
@@ -33,6 +33,6 @@ resource "aws_security_group" "allow_ssh_julia" {
   ]
 
   tags = {
-    Name = "allow_ssh_julia"
+    Name = "allow-ssh-julia"
   }
 }
