@@ -18,7 +18,7 @@ resource "aws_instance" "web" {
   }
 
   tags = {
-    Name = "ec2_Julia"
+    Name = "ec2_tf_Julia"
   }
 }
 
