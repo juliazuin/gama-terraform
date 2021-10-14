@@ -7,7 +7,7 @@ resource "aws_instance" "web" {
   instance_type           = "t3.micro"
   key_name                = "chave_development_julia" # key chave publica cadastrada na AWS 
   subnet_id               =  aws_subnet.my_subnet.id # vincula a subnet direto e gera o IP automático
-  private_ip              = "172.17.0.100"
+  private_ip              = "10.10.10.100"
   vpc_security_group_ids  = [
     "${aws_security_group.allow_ssh_terraform.id}",
   ]
